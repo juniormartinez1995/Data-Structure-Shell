@@ -12,6 +12,8 @@ int ts_print(char **args);
 int ts_destroy(char **args);
 int ts_insere(char **args);
 int ts_busca(char **args);
+int ts_remove(char **args);
+int ts_insere_varios(char **args);
 
 /*
   List of builtin commands, followed by their corresponding functions.
@@ -25,7 +27,9 @@ char *builtin_str[] = {
   "ts-print",
   "ts-destroy",
   "ts-insere",
-  "ts-busca"
+  "ts-busca",
+  "ts-remove",
+  "ts-insere-varios"
 };
 
 int (*builtin_func[]) (char **) = {
@@ -37,6 +41,8 @@ int (*builtin_func[]) (char **) = {
   &ts_print,
   &ts_destroy,
   &ts_insere,
-  &ts_busca
+  &ts_busca,
+  &ts_remove,
+  &ts_insere_varios
 };
 

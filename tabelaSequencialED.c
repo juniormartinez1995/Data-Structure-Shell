@@ -24,4 +24,17 @@ int ed_ts_insere(TipoRegistro reg, TipoTabela *t){
 		}
 }
 
+int ed_ts_remove(TipoChave x, TipoTabela *t){
+	int i = ed_ts_busca(x,t);
+	if(i){
+		while(i < t->n){
+			t->item[i] = t->item[i + 1];
+			i++;
+		}
+		t->n--;
+		return 1;
+	}
+	else return i;
+}
+
 

@@ -126,8 +126,61 @@ int ts_insere (char **args)
 	}
 }
 
+int ts_remove (char **args){
+	if(tabelaSequencial == NULL){
+		fprintf(stderr,"ED: Tabela nao inicializada\n ");
+		return 1;
+	}
+	else{
+		if(args[1] == NULL){
+			fprintf(stderr, "ED: Esperado uma chave para remocao\n");
+			return 1;
+		}
+		else{
+			int n = toString(args[1]);
+			int i = ed_ts_remove(n, tabelaSequencial);
+			if(i) printf("Registro removido \n");
+			else printf("Registo nao encontrado\n");
+		}
+		return 1;
+	}
+}
 
 
+int ts_insere_varios (char **args)
+{ 
+	TipoRegistro *defn;
+	if (tabelaSequencial == NULL) {
+		fprintf(stderr, "ED: tabela nao inicializada\n");
+		return 1;
+	} 
+	else{
+		if (args[1] == NULL) {
+			fprintf(stderr, "ED: esperado pelo menos um inteiro para insercao \n");
+			return 1;
+		}
+		int j = 1;
+		while(args[j] != NULL ) {
+			int n = toString(args[j]);
+			defn = (TipoRegistro *) malloc(sizeof(TipoRegistro));
+			if (defn == NULL) {
+				fprintf(stderr, "ED: Incapaz de alocar espaco para a estrutura\n");
+				return 2;
+			} 
+			else{
+				defn -> chave = n;
+				int i = ed_ts_insere(*defn,tabelaSequencial);
+				if (i==1) printf("Registro Inserido\n");
+				else {
+					printf("ED: tabela encheu, %do param em diante nao foi inserido\n",j);
+					break;
+					}
+			}
+			j++;
+		}
+		return 1;
+	}
+}
 
 
 int ts_busca (char **args)
