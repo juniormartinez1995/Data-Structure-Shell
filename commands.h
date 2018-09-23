@@ -15,6 +15,11 @@ int ts_busca(char **args);
 int ts_remove(char **args);
 int ts_insere_varios(char **args);
 
+int fl_init (char **args);
+int fl_insere (char **args);
+int fl_print (char **args);
+int fl_remove (char **args);
+
 /*
   List of builtin commands, followed by their corresponding functions.
  */
@@ -29,7 +34,11 @@ char *builtin_str[] = {
   "ts-insere",
   "ts-busca",
   "ts-remove",
-  "ts-insere-varios"
+  "ts-insere-varios",
+  "fl-init",
+  "fl-insere",
+  "fl-print",
+  "fl-remove"
 };
 
 int (*builtin_func[]) (char **) = {
@@ -43,6 +52,10 @@ int (*builtin_func[]) (char **) = {
   &ts_insere,
   &ts_busca,
   &ts_remove,
-  &ts_insere_varios
+  &ts_insere_varios,
+  &fl_init,
+  &fl_insere,
+  &fl_print,
+  &fl_remove
 };
 
