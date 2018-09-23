@@ -2,30 +2,6 @@
 #include <stdlib.h>
 #include "tabelaFilaED.h"
 	
-int fl_init (char **args){ 
-  TipoFila *defn;
-
-	if (args[1] == NULL) {
-    	fprintf(stderr, "ED: nome da estrutura esperado\n");
-		return 2;
-	} 
-	else {
-		if (Fila != NULL) {
-	    	fprintf(stderr, "ED: estrutura jah inicializada - delete-a antes de inicializar\n");
-			return 3;
-		} else {
-			defn = (TipoFila *) malloc(sizeof(TipoFila));
-			if (defn == NULL) {
-				fprintf(stderr, "ED: Incapaz de alocar espaco para a estrutura\n");
-				return 4;
-			}
-			Fila = defn;
-			ed_fl_inicializa(Fila);
-			printf("Estrutura %s criada\n",args[1]);
-			return 1;
-		}
-	}
-}
 
 int ConvertToInt(char a[]) {
 	int c, sign, offset, n;
@@ -52,6 +28,31 @@ int ConvertToInt(char a[]) {
  	}
  
   return n;
+}
+
+int fl_init (char **args){ 
+  TipoFila *defn;
+
+	if (args[1] == NULL) {
+    	fprintf(stderr, "ED: nome da estrutura esperado\n");
+		return 2;
+	} 
+	else {
+		if (Fila != NULL) {
+	    	fprintf(stderr, "ED: estrutura jah inicializada - delete-a antes de inicializar\n");
+			return 3;
+		} else {
+			defn = (TipoFila *) malloc(sizeof(TipoFila));
+			if (defn == NULL) {
+				fprintf(stderr, "ED: Incapaz de alocar espaco para a estrutura\n");
+				return 4;
+			}
+			Fila = defn;
+			ed_fl_inicializa(Fila);
+			printf("Estrutura %s criada\n",args[1]);
+			return 1;
+		}
+	}
 }
 
 int fl_insere (char **args)
@@ -121,7 +122,7 @@ int fl_print (char **args)
 			
 			ed_fl_remove(Fila, &e);
 				
-			printf("%d ", e);
+			printf("%d\t", e);
 			
 			ed_fl_insere(Aux, e);
 				
