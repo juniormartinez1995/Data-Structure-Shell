@@ -16,7 +16,7 @@ TipoIndice ed_ts_busca(TipoChave x , TipoTabela *t){
 }
 
 int ed_ts_insere(TipoRegistro reg, TipoTabela *t){ 
-	if (t->n == MAXN) return 2; //  Erro de tabela cheia
+	if (t->n == MAXN) return 2; //  The list is full
 	else {
 		t->n++;
 		t->item[t->n] = reg;

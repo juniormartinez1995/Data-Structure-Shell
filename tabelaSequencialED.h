@@ -5,8 +5,6 @@ typedef long TipoChave;
 
 typedef struct TipoRegistro {
 	TipoChave chave;
-	// int conteudo;
-	// outros componentes //
 } TipoRegistro;
 
 typedef int TipoIndice;
@@ -25,6 +23,6 @@ int ed_ts_insere(TipoRegistro reg, TipoTabela *t);
 TipoIndice ed_ts_busca(TipoChave x , TipoTabela *t);
 
 /*
-  a tabela propriamente dita
-  */
+	The list itself
+*/
 static struct TipoTabela *tabelaSequencial = NULL;

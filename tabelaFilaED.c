@@ -6,7 +6,7 @@ void ed_fl_inicializa(TipoFila *f){
 	f->fim = NULL;
 }
 
-int ed_fl_insere(TipoFila *queue, TipoItem e){
+int ed_fl_insere(TipoFila *f, TipoItem e){
 	
 	Node *NewNode;
 	NewNode = (Node *) malloc(sizeof(Node));
@@ -16,28 +16,28 @@ int ed_fl_insere(TipoFila *queue, TipoItem e){
 	NewNode->info = e;
 	NewNode->prox = NULL;
 	
-	if(queue->inicio == NULL) queue->inicio = NewNode;
+	if(f->inicio == NULL) f->inicio = NewNode;
 	
-	else queue->fim->prox = NewNode;
+	else f->fim->prox = NewNode;
 	
-	queue->fim = NewNode;
+	f->fim = NewNode;
 	
 	return 1;
 }
 
 
 
-int ed_fl_remove(TipoFila *queue, TipoItem *e){
+int ed_fl_remove(TipoFila *f, TipoItem *e){
 	
 	Node *aux;
 	
-	if(queue->inicio == NULL) return 0;
+	if(f->inicio == NULL) return 0;
 	
-	*e = queue->inicio->info;
-	aux = queue->inicio;
+	*e = f->inicio->info;
+	aux = f->inicio;
 	
-	if(queue->inicio == queue->fim) queue->inicio = queue->fim = NULL;
-	else queue->inicio = queue->inicio->prox;
+	if(f->inicio == f->fim) f->inicio = f->fim = NULL;
+	else f->inicio = f->inicio->prox;
 	
 	free(aux);
 	

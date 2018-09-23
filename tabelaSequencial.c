@@ -6,7 +6,6 @@
 int ts_init (char **args)
 { 
   TipoTabela *defn;
-  // ignnore este primeiro if
   if (args[1] == NULL) {
     	fprintf(stderr, "ED: nome da estrutura esperado\n");
 		return 2;
@@ -23,10 +22,6 @@ int ts_init (char **args)
 	   tabelaSequencial = defn;
 	   ed_ts_inicializa(tabelaSequencial);
 	   printf("Estrutura %s criada\n",args[1]);
-	   //(tabelaSequencial->n)++;
-	   //(tabelaSequencial->n)++;
-	   //tabelaSequencial->item[1].chave = 12;
-	   //tabelaSequencial->item[2].chave = 111;
 	   return 1;
   	};
 	};

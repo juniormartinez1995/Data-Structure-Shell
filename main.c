@@ -116,7 +116,7 @@ char *lsh_read_line(void)
 
 
 /*
-   Faz o Parser da linha lida
+	Do the line parser
 */
 char **lsh_split_line(char *line)
 {
