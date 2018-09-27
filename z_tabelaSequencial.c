@@ -1,15 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "tabelaSequencialED.h"
+#include <string.h>
+#include "z_tabelaSequencialED.h"
 
-
-int ts_init (char **args)
-{ 
+/* Inicializa Tabela Sequencial */
+int ts_init (char **args){ 
   TipoTabela *defn;
-  if (args[1] == NULL) {
-    	fprintf(stderr, "ED: nome da estrutura esperado\n");
-		return 2;
-  } else {
+  printf("Processando %s ...\n",args[0]);
 	if (tabelaSequencial != NULL) {
     	fprintf(stderr, "ED: estrutura jah inicializada - delete-a antes de inicializar\n");
 		return 3;
@@ -21,15 +18,14 @@ int ts_init (char **args)
 		};
 	   tabelaSequencial = defn;
 	   ed_ts_inicializa(tabelaSequencial);
-	   printf("Estrutura %s criada\n",args[1]);
+	   printf("Estrutura criada\n");
 	   return 1;
   	};
-	};
 }
 
-
-int ts_print (char **args)
-{ 
+/* Imprime Tabela Sequencial */
+int ts_print (char **args){
+  printf("Processando %s ...\n",args[0]);
 	if (tabelaSequencial == NULL) {
     	fprintf(stderr, "ED: tabela nao inicializada\n");
 		return 1;
@@ -50,20 +46,19 @@ int ts_print (char **args)
 	}
 }
 
-
-int ts_destroy (char **args)
-{ 
+/* Destroy Tabela Sequencial */
+int ts_destroy (char **args){ 
+  printf("Processando %s ...\n",args[0]);
 	if (tabelaSequencial == NULL) {
     	fprintf(stderr, "ED: tabela nao inicializada\n");
 		return 1;
 	} else {
 		free(tabelaSequencial);
 		tabelaSequencial = NULL;
-	    printf("Estrutura %s apagada\n");
+	    printf("Estrutura apagada\n");
 		return 1;
 	}
 }
-
 
 /* converte string to integer */
 int toString(char a[]) {
@@ -93,9 +88,9 @@ int toString(char a[]) {
   return n;
 }
 
-
-int ts_insere (char **args)
-{ 
+/* Insere Elemento em Tabela Sequencial */
+int ts_insere (char **args){
+  printf("Processando %s ...\n",args[0]); 
     TipoRegistro *defn;
 	if (tabelaSequencial == NULL) {
     	fprintf(stderr, "ED: tabela nao inicializada\n");
@@ -121,65 +116,43 @@ int ts_insere (char **args)
 	}
 }
 
-int ts_remove (char **args){
-	if(tabelaSequencial == NULL){
-		fprintf(stderr,"ED: Tabela nao inicializada\n ");
-		return 1;
-	}
-	else{
-		if(args[1] == NULL){
-			fprintf(stderr, "ED: Esperado uma chave para remocao\n");
-			return 1;
-		}
-		else{
-			int n = toString(args[1]);
-			int i = ed_ts_remove(n, tabelaSequencial);
-			if(i) printf("Registro removido \n");
-			else printf("Registo nao encontrado\n");
-		}
-		return 1;
-	}
-}
-
-
-int ts_insere_varios (char **args)
-{ 
-	TipoRegistro *defn;
+/* Insere Vários Elementos em Tabela Sequencial */
+int ts_insere_varios (char **args){
+  printf("Processando %s ...\n",args[0]); 
+    TipoRegistro *defn;
 	if (tabelaSequencial == NULL) {
-		fprintf(stderr, "ED: tabela nao inicializada\n");
+    	fprintf(stderr, "ED: tabela nao inicializada\n");
 		return 1;
-	} 
-	else{
-		if (args[1] == NULL) {
-			fprintf(stderr, "ED: esperado pelo menos um inteiro para insercao \n");
+	} else {
+  		if (args[1] == NULL) {
+    		fprintf(stderr, "ED: esperado pelo menos um inteiro para insercao\n");
 			return 1;
-		}
+ 		 };
 		int j = 1;
 		while(args[j] != NULL ) {
 			int n = toString(args[j]);
 			defn = (TipoRegistro *) malloc(sizeof(TipoRegistro));
-			if (defn == NULL) {
+	  		if (defn == NULL) {
 				fprintf(stderr, "ED: Incapaz de alocar espaco para a estrutura\n");
 				return 2;
-			} 
-			else{
+			} else {
 				defn -> chave = n;
 				int i = ed_ts_insere(*defn,tabelaSequencial);
 				if (i==1) printf("Registro Inserido\n");
 				else {
-					printf("ED: tabela encheu, %do param em diante nao foi inserido\n",j);
+					printf("ED: tabela encheu, %d. param em diante nao foi inserido\n",j);
 					break;
-					}
-			}
+				}
+				}
 			j++;
 		}
 		return 1;
-	}
+		}
 }
 
-
-int ts_busca (char **args)
-{ 
+/* Busca Elemento em Tabela Sequencial */
+int ts_busca (char **args){
+  printf("Processando %s ...\n",args[0]); 
 	if (tabelaSequencial == NULL) {
     	fprintf(stderr, "ED: tabela nao inicializada\n");
 		return 1;
@@ -191,6 +164,26 @@ int ts_busca (char **args)
 			int n = toString(args[1]);
 			int i = ed_ts_busca(n,tabelaSequencial);
 			if (i) printf("Registro encontrado em na %da posicao\n",i);
+			else printf("Registro não encontrado\n");
+			}
+		return 1;
+		}
+}
+
+/* Remove Elemento de Tabela Sequencial */
+int ts_remove (char **args){
+  printf("Processando %s ...\n",args[0]); 
+	if (tabelaSequencial == NULL) {
+    	fprintf(stderr, "ED: tabela nao inicializada\n");
+		return 1;
+	} else {
+  		if (args[1] == NULL) {
+    		fprintf(stderr, "ED: esperado uma chave para remocao \n");
+			return 1;
+ 		 } else {
+			int n = toString(args[1]);
+			int i = ed_ts_remove(n,tabelaSequencial);
+			if (i) printf("Registro removido\n");
 			else printf("Registro não encontrado\n");
 			}
 		return 1;

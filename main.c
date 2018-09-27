@@ -8,8 +8,7 @@
 #define LSH_TOK_BUFSIZE 64
 #define LSH_TOK_DELIM " \t\r\n\a"
 
-/* DADOS COMANDOS e CONSOLE */
- 
+
 /* COMANDOS ===============================*/
 
 /*
@@ -24,9 +23,9 @@ int lsh_num_builtins(void) {
 /*
   Builtin function implementations.
 */
+/*
 int lsh_cd(char **args)
-{
-	/*
+{ 
   if (args[1] == NULL) {
     fprintf(stderr, "ED: argumento esperado como \"cd\"\n");
   } else {
@@ -34,14 +33,15 @@ int lsh_cd(char **args)
       perror("lsh");
     }
   }
-  */
-  printf("Comando inativo para compatibilidade com Linux");
+ 
   return 1;
 }
+*/
 
 int lsh_help(char **args)
 {
   int i;
+  printf("Processando %s ...\n",args[0]);
   printf("Entre comandos e argumentos, e tecle ENTER.\n");
   printf("Os seguintes comandos estao disponiveis:\n");
 
@@ -56,12 +56,13 @@ int lsh_help(char **args)
 
 int lsh_exit(char **args)
 {
+  printf("Processando %s ...\n",args[0]);
   return 0;
 }
 
 int lsh_sobre(char **args)
 {
-  int i;
+  printf("Processando %s ...\n",args[0]);
   printf("Disciplina Algoritmos e Estrutura de Dados II\n");
   printf("Prof. Manoel Mendonca\n");
   printf("Shell baseada na LSH de Stephen Brennan\n");
@@ -116,7 +117,7 @@ char *lsh_read_line(void)
 
 
 /*
-	Do the line parser
+   Faz o Parser da linha lida
 */
 char **lsh_split_line(char *line)
 {
@@ -162,11 +163,11 @@ int lsh_execute(char **args)
   for (i = 0; i < lsh_num_builtins(); i++) {
     if (strcmp(args[0], builtin_str[i]) == 0) {
       return (*builtin_func[i])(args);
-  	}
-   }	
+    }
+  }
    
    printf("Comando indefinido: \" %s\"\n", args[0]);
-   
+  
   // Vers?o concorrrente
   // return lsh_launch(args);
   return 1;
@@ -193,7 +194,8 @@ void lsh_loop()
 }
 
 
-int main(int argc, char *argv[])
+//int main(int argc, char *argv[])
+int main()
 {
   // Load config files, if any.
 

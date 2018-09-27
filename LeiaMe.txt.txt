@@ -1,0 +1,30 @@
+5a Versão da ED Shell
+
+Com console e as seguintes estruturas e operações
+
+Arvore Binária:
+  "arv-init",
+  "arv-insere",	
+  "arv-insere-varios",
+  "arv-print-emOrd",
+  "arv-print-preOrd",
+  "arv-print-posOrd",
+  "arv-altura",
+  "arv-num-nos",
+  "arv-busca",
+  "arv-remove"
+
+Tabela Sequencial:
+  "ts-init", 	
+  "ts-print",
+  "ts-destroi",
+  "ts-insere",
+  "ts-busca",
+  "ts-remove",
+  "ts-insere-varios",
+
+Fila
+  "fi-init", 	
+  "fi-enfile",
+  "fi-desenfile",
+  "fi-print",
