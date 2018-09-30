@@ -13,10 +13,12 @@ int ts_busca(char **args);
 int ts_remove(char **args);
 int ts_insere_varios(char **args);
 int fi_init(char **args);
+int fi_destroy(char **args);
 int fi_enfile(char **args);
 int fi_desenfile(char **args);
 int fi_print(char **args);
 int arv_init(char **args);
+int arv_destroy(char **args);
 int arv_insere(char **args);
 int arv_insere_varios(char **args);
 int arv_print_em_ordem(char **args);
@@ -43,10 +45,12 @@ char *builtin_str[] = {
   "ts-remove",
   "ts-insere-varios",
   "fi-init", 			// Fila
+  "fi-destroy",
   "fi-enfile",
   "fi-desenfile",
   "fi-print",
   "arv-init",
+  "arv-destroy",
   "arv-insere",			// Arvore Binaria
   "arv-insere-varios",
   "arv-print-emOrd",
@@ -71,10 +75,12 @@ int (*builtin_func[]) (char **) = {
   &ts_remove,
   &ts_insere_varios,
   &fi_init,
+  &fi_destroy,
   &fi_enfile,
   &fi_desenfile,
   &fi_print,
   &arv_init,
+  &arv_destroy,
   &arv_insere,
   &arv_insere_varios,
   &arv_print_em_ordem,

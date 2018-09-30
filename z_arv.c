@@ -23,6 +23,20 @@ int arv_init (char **args)
   	}
 }
 
+/* Destroy Tabela Sequencial */
+int arv_destroy (char **args){ 
+  printf("Processando %s ...\n",args[0]);
+	if (arv == NULL) {
+    	fprintf(stderr, "ED: tabela nao inicializada\n");
+		return 1;
+	} else {
+		free(arv);
+		arv = NULL;
+	    printf("Estrutura apagada\n");
+		return 1;
+	}
+}
+
 int arv_insere (char **args)
 { 
     TipoRegistro *defn;
@@ -50,6 +64,8 @@ int arv_insere (char **args)
 		}
 	}
 }
+
+
 
 
 int arv_insere_varios (char **args){ 

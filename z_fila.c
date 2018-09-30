@@ -69,6 +69,19 @@ int fi_desenfile (char **args)
 	return 1;
 }
 
+/* Destroy fila */
+int fi_destroy (char **args){ 
+  printf("Processando %s ...\n",args[0]);
+	if (fila == NULL) {
+    	fprintf(stderr, "ED: tabela nao inicializada\n");
+		return 1;
+	} else {
+		free(fila);
+		fila = NULL;
+	    printf("Estrutura apagada\n");
+		return 1;
+	}
+}
 
 int fi_print (char **args)
 { 
